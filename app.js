@@ -1,9 +1,13 @@
 const getAdvice = async () => {
-    const result = await axios.get('https://api.adviceslip.com/advice');
-    const adviceId = result.data.slip.id;
-    const advice = result.data.slip.advice;
-    document.querySelector('#advice-id').innerText = adviceId;
-    document.querySelector('#advice').innerText = `"${advice}"`;
+    try {
+        const result = await axios.get('https://api.adviceslip.com/advice');
+        const adviceId = result.data.slip.id;
+        const advice = result.data.slip.advice;
+        document.querySelector('#advice-id').innerText = adviceId;
+        document.querySelector('#advice').innerText = `"${advice}"`;
+    } catch (e) {
+        alert(`I'm sorry, you have reached the following error: ${e}`);
+    }
 }
 
 getAdvice();
